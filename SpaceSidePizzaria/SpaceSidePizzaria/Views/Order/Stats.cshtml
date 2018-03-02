@@ -1,0 +1,51 @@
+﻿@using SpaceSidePizzaria.Models
+
+@{
+    ViewBag.Title = "Stats";
+}
+
+<div class="container">
+    <h2>Stats</h2>
+    <br />
+
+    @if (TempData.ContainsKey("TotalOrders"))
+    {
+        <h4 class="light">Total Orders</h4>
+        <p>@TempData["TotalOrders"]</p>
+    }
+
+    <br />
+
+    @if (TempData.ContainsKey("ValuableCustomer"))
+    {
+        UserPO valuableCustomer = TempData["ValuableCustomer"] as UserPO;
+        <h4 class="light">Most Valuable Customer</h4>
+        <span>Username:</span><span>@valuableCustomer.Username</span><br />
+        <span>First Name:</span><span>@valuableCustomer.FirstName</span><br />
+        <span>Last Name:</span><span>@valuableCustomer.LastName</span><br />
+    }
+
+    <br />
+
+    @if (TempData.ContainsKey("ValuableDrivers"))
+    {
+        <h4 class="light">Most Valuable Drivers</h4>
+        <ul>
+            @foreach (string driverName in TempData["ValuableDrivers"] as List<string>)
+            {
+                <li>@driverName</li>
+            }
+        </ul>
+    }
+
+    @if (TempData.ContainsKey("BestDayOfMonth"))
+    {
+        <h3>Most Orders Sold This Month</h3>
+
+        if (DateTime.TryParse(TempData["BestDayOfMonth"].ToString(), out DateTime bestDate))
+        {
+            <h4>@bestDate</h4>
+        }
+    }
+</div>
+

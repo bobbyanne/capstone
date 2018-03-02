@@ -1,0 +1,170 @@
+@font-face {
+    font-family: "MaterialIcons";
+    src: url(../fonts/MaterialIcons-Regular.ttf)
+}
+
+.material-icons {
+    font-family: "MaterialIcons" !important;
+    font-style: unset;
+}
+
+.details {
+    font-size: 1.2em;
+}
+
+.content-body {
+    min-height: 80vh;
+}
+
+h2 {
+    font-weight: 300 !important;
+}
+
+.container {
+    width: 85% !important;
+}
+
+.input-field {
+    max-width: 90%;
+}
+
+.input-field .caret {
+    min-width: unset;
+}
+
+span:nth-of-type(odd) {
+    display: inline-block;
+    min-width: 150px;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+#landing {
+    height: 91vh;
+    background: url(../../Content/Images/space-bg.png) #002843 no-repeat;
+    background-size: 70%;
+    background-position: bottom left;
+    position: relative;
+}
+
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: #f7f7f7 !important;
+}
+
+table .caret {
+    min-width: unset;
+}
+
+table .select-wrapper {
+    padding-top: 10px;
+    margin-right: 15px;
+}
+
+.field-validation-error {
+    position: relative;
+    top: -15px;
+}
+
+form p {
+    margin-top: -10px;
+    margin-bottom: 40px;
+}
+
+.card-image img {
+    margin: 0 auto;
+}
+
+nav .dropdown-content {
+    top: 64px !important;
+}
+
+.dropdown-content a {
+    font-size: 1em !important;
+}
+
+.select-dropdown label {
+    top: -10px !important;
+}
+
+.dropdown-content {
+    top: 40px !important;
+}
+
+.card-image img {
+    max-height: 200px;
+}
+
+#sidenav-overlay {
+    z-index: 950 !important;
+}
+
+.row .col-lg-6 {
+    font-family: Sawasdee;
+}
+
+#landing .col-lg-6 {
+    position: relative;
+}
+
+#landing-container {
+    height: 100%;
+    transform: translateY(30%);
+}
+
+.btn-container {
+    margin-top: 40px !important;
+    margin: auto;
+    width: -moz-fit-content;
+}
+
+#landing .btn {
+    font-family: Roboto;
+}
+
+#landing h2 {
+    width: 100%;
+    text-align: center;
+}
+
+.quick-facts .material-icons {
+    font-size: 3.8em;
+    color: #6A1B9A;
+    margin: auto;
+    display: block;
+    text-align: center;
+}
+
+.quick-facts p {
+    font-size: 1.2em;
+    text-align: center;
+}
+
+@media (max-width: 992px) {
+    #landing {
+        background-image: none;
+    }
+}
+
+.card .material-icons {
+    font-size: 1.5em;
+    display: inline-block;
+    position: relative;
+    top: 6px;
+    margin-right: 10px;
+    color: #474747
+}
+
+
+
+
+
+
+
+
+
+
+

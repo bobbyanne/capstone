@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<div id="landing">
+    <div class="row">
+        <div class="col offset-l6 col-lg-6">
+            <div id="landing-container">
+                <h2 class="light center-block white-text" style="margin-top: 0; padding-top: 40px;">Welcome To Spaceside</h2>
+
+                <h5 class="white-text center-align">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tincidunt dignissim magna, id pharetra nulla pharetra eget. Vestibulum eget eros ornare ligula fermentum tincidunt eget quis eros. Morbi fermentum, erat ac molestie dictum, enim neque gravida augue, at interdum dolor eros ac mauris.</h5>
+
+                <div class="btn-container">
+                    @Html.ActionLink("Create Custom Pizza", "CreatePizza", "Pizza", null, new { @class = "btn waves-effect waves-light purple darken-3" })
+                    @Html.ActionLink("Shop Pizzas", "Index", "Pizza", null, new { @class = "btn waves-effect waves-light", @style = "background-color: #CD615F;" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="container">
+
+    <h2 class="center-align">Light Speed Deliveries</h2>
+    <br />
+
+    <div class="row">
+        <div class="col m4 quick-facts">
+            <i class="material-icons">timeline</i>
+            <p>Check the status on your order at anytime.</p>
+        </div>
+
+        <div class="col m4 quick-facts">
+            <i class="material-icons">av_timer</i>
+            <p>Deliveries at light speed!</p>
+        </div>
+
+        <div class="col m4 quick-facts">
+            <i class="material-icons">attach_money</i>
+            <p>The prices are out of this world..</p>
+        </div>
+    </div>
+</div>

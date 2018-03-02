@@ -1,0 +1,47 @@
+﻿@using SpaceSidePizzaria.Models
+@using SpaceSidePizzaria.ViewModels
+
+@model PizzaOrderVM
+
+@{
+    ViewBag.Title = "Order Details";
+}
+
+<div class="container">
+    <h2>Order Details</h2>
+
+    @if(TempData.ContainsKey("ErrorMessage"))
+    {
+        <p class="red-text">@TempData["ErrorMessage"]</p>
+    }
+
+    <table class="striped">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (PizzaPO pizza in Model.Pizzas)
+            {
+                <tr>
+                    <td>@pizza.Description</td>
+                    <td>@Html.DisplayFor(model => pizza.Price)</td>
+                    <td>
+                        @Html.ActionLink("Update", "UpdatePizzaInOrder", "Pizza", new { ID = pizza.PizzaID }, null) |
+                        @Html.ActionLink("Remove", "DeleteFromOrder", "Order", new { ID = pizza.PizzaID }, null)
+                    </td>
+                </tr>
+            }
+            <tr><th>Total: @Html.DisplayFor(model => Model.Order.Total)</th></tr>
+        </tbody>
+    </table>
+
+    <span>@Html.DisplayNameFor(model => Model.Order.Status)</span><span>@Model.Order.Status</span><br />
+    <span>@Html.DisplayNameFor(model => Model.Order.OrderDate)</span><span>@Model.Order.OrderDate</span><br />
+    <span>@Html.DisplayNameFor(model => Model.Order.IsDelivery)</span><span>@Model.Order.IsDelivery</span><br />
+    <span>@Html.DisplayNameFor(model => Model.Order.BuyerName)</span><span>@Model.Order.BuyerName</span>
+</div>

@@ -1,0 +1,170 @@
+﻿@using SpaceSidePizzaria.Models;
+
+@{
+    int sessionRole = 0;
+
+    if (Session["Role"] != null)
+    {
+        int.TryParse(Session["Role"].ToString(), out sessionRole);
+    }
+
+    List<PizzaPO> cart = Session["Cart"] as List<PizzaPO>;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Spaceside Pizzaria</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @if (sessionRole == 1)
+    {
+        <ul id="admin-dropdown" class="dropdown-content">
+            <li>@Html.ActionLink("Add A User", "Register", "Account")</li>
+            <li>@Html.ActionLink("User Accounts", "Index", "Account")</li>
+            <li>@Html.ActionLink("Create Prefab Pizza", "CreatePrefabPizza", "Pizza")</li>
+            <li>@Html.ActionLink("View Prefab Pizzas", "PrefabPizzas", "Pizza")</li>
+            <li>@Html.ActionLink("Pending Orders", "ViewPendingOrders", "Order")</li>
+            <li>@Html.ActionLink("Completed Orders", "CompletedOrders", "Order")</li>
+            <li>@Html.ActionLink("Stats", "Stats", "Order")</li>
+        </ul>
+    }
+
+    @if (sessionRole == 2 || sessionRole == 1)
+    {
+        <ul id="driver-dropdown" class="dropdown-content">
+            <li>@Html.ActionLink("Available Deliveries", "ReadyDeliveries", "Order")</li>
+            <li>@Html.ActionLink("My Deliveries", "MyDeliveries", "Order")</li>
+        </ul>
+    }
+
+    @if (sessionRole > 0)
+    {
+        <ul id="order-dropdown" class="dropdown-content">
+            <li>@Html.ActionLink("My Orders", "MyOrders", "Order")</li>
+        </ul>
+    }
+
+    <div class="navbar-fixed">
+        <nav class="purple darken-3">
+            <div class="nav-wrapper">
+                @if (sessionRole != 1)
+                {
+                    @Html.ActionLink("Spaceside Pizzaria", "Index", "Home", new { area = "" }, new { @class = "brand-logo center light", @style = "margin-left: 20px" })
+                }
+                <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
+
+                <ul class="side-nav" id="mobile-menu">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    @if (sessionRole == 0 || sessionRole == 3)
+                    {
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    }
+
+                    <li>@Html.ActionLink("Shop", "Index", "Pizza")</li>
+
+                    @if (sessionRole == 1)
+                    {
+                        <ul class="collapsible" data-collapsible="accordion">
+                            <li class="bold">
+                                <a class="collapsible-header waves-effect waves-purple">Admin Actions</a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li>@Html.ActionLink("Add A User", "Register", "Account")</li>
+                                        <li>@Html.ActionLink("User Accounts", "Index", "Account")</li>
+                                        <li>@Html.ActionLink("Create Prefab Pizza", "CreatePrefabPizza", "Pizza")</li>
+                                        <li>@Html.ActionLink("View Prefab Pizzas", "PrefabPizzas", "Pizza")</li>
+                                        <li>@Html.ActionLink("Pending Orders", "ViewPendingOrders", "Order")</li>
+                                        <li>@Html.ActionLink("Completed Orders", "CompletedOrders", "Order")</li>
+                                        <li>@Html.ActionLink("Stats", "Stats", "Order")</li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="bold">
+                                <a class="collapsible-header waves-effect waves-purple">Driver Actions</a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li>@Html.ActionLink("Available Deliveries", "ReadyDeliveries", "Order")</li>
+                                        <li>@Html.ActionLink("My Deliveries", "MyDeliveries", "Order")</li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    }
+                    else if (sessionRole == 2)
+                    {
+                        <ul class="collapsible" data-collapsible="accordion">
+                            <li class="bold">
+                                <a class="collapsible-header waves-effect waves-purple">Driver Actions</a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li>@Html.ActionLink("Available Deliveries", "ReadyDeliveries", "Order")</li>
+                                        <li>@Html.ActionLink("My Deliveries", "MyDeliveries", "Order")</li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    }
+                </ul>
+
+                <ul class="left hide-on-med-and-down" style="margin-right: 20px;">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    @if (sessionRole == 0 || sessionRole == 3)
+                    {
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    }
+
+                    <li>@Html.ActionLink("Shop", "Index", "Pizza")</li>
+
+                    @if (sessionRole == 1 || sessionRole == 2)
+                    {
+                        <li><a class="dropdown-button" href="#!" data-activates="driver-dropdown">Driver Actions<i class="material-icons right">arrow_drop_down</i></a></li>
+                    }
+
+                    @if (sessionRole > 0)
+                    {
+                        <li><a class="dropdown-button" href="#!" data-activates="order-dropdown">Order Info<i class="material-icons right">arrow_drop_down</i></a></li>
+                    }
+                    @if (sessionRole == 1)
+                    {
+                        <li><a class="dropdown-button" href="#!" data-activates="admin-dropdown">Admin Actions<i class="material-icons right">arrow_drop_down</i></a></li>
+                    }
+                </ul>
+
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="/Cart"><i class="left material-icons">shopping_cart</i>@cart.Count.ToString()</a></li>
+                    @if (sessionRole != 0) // If the user is logged on
+                    {
+                        <li>@Html.ActionLink(Session["Username"].ToString(), "UserDetails", "Account", new { @id = Session["UserID"].ToString() }, null)</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Create Account", "Register", "Account")</li>
+                        <li>@Html.ActionLink("Login", "Login", "Account")</li>
+                    }
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="content-body">
+        @RenderBody()
+    </div>
+    <div class="divider"></div>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Spaceside Pizzaria</p>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/materialize")
+    @Scripts.Render("~/bundles/scripts")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
